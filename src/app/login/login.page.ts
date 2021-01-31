@@ -24,7 +24,8 @@ export class LoginPage implements OnInit {
   }
 
   logar(){
-    console.log("Login com sucesso!");
+     alert("Login com sucesso!");
+    console.log("");
     console.log(this.formGroup.value);
     this.navCtrl.navigateRoot(['/home']);
   }

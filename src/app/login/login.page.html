@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     
-    <ion-title>login</ion-title>
+    <center><ion-title>Fazer Login</ion-title></center>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +12,6 @@
   <ion-list lines="full" class="ion-no-margin">
     <ion-list-header lines="full">
       <ion-label>
-        Label Positions
       </ion-label>
     </ion-list-header>
 
@@ -30,6 +29,7 @@
 
   </ion-list>
 
-  <ion-button color="primary" expand="full" (click)="logar()" [disabled]="formGroup.invalid">Entrar</ion-button>
+   <ion-button color="success"  (click)="logar()" [disabled]="formGroup.invalid">Conectar</ion-button>
+   <ion-button color="primary" a href="/cadastro"  >cadastrar-se</ion-button>
   </form>
 </ion-content>

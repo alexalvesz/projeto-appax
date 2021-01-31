@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    
+    <center><ion-title>Crie a sua conta</ion-title></center>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="formGroup">
+
+  <ion-list lines="full" class="ion-no-margin">
+    <ion-list-header lines="full">
+      <ion-label>
+  
+      </ion-label>
+      <br>
+    </ion-list-header>
+    <ion-item>
+      <ion-label position="floating">Seu nome</ion-label>
+      <ion-input type="name"  formControlName="username"></ion-input>
+      <p *ngIf="formGroup.controls.username.errors && formGroup.controls.username.dirty">*15</p>
+
+   
+     </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+      <p *ngIf="formGroup.controls.email.errors && formGroup.controls.email.dirty">E-mail Inválido</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+      <p *ngIf="formGroup.controls.password.errors && formGroup.controls.password.dirty">Senha Inválida</p>
+    </ion-item>
+
+  </ion-list>
+
+  <center><ion-button expand="success"  (click)="cadastro()" [disabled]="formGroup.invalid">Cadastrar</ion-button>
+  </center>
+  </form>
+</ion-content>

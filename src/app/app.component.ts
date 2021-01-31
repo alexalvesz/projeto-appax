@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       url: '/login',
       icon: 'exit'
     },
-    
+   
   ];
   public labels = [];
 
