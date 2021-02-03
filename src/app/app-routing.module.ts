@@ -3,7 +3,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
-
 // caso não tenha autorização/não fez login, redirecione para página de login
 const redirectToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -38,6 +37,14 @@ const routes: Routes = [
   {
     path: 'login-cadastro',
     loadChildren: () => import('./login-cadastro/login-cadastro.module').then( m => m.LoginCadastroPageModule)
+  },
+  {
+    path: 'clientes',
+    loadChildren: () => import('./clientes/clientes.module').then( m => m.ClientesPageModule)
+  },
+  {
+    path: 'cliente-novo',
+    loadChildren: () => import('./cliente-novo/cliente-novo.module').then( m => m.ClienteNovoPageModule)
   }
 ];
 

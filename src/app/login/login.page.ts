@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuController, NavController } from '@ionic/angular';
+import { TemplateService } from '../services/template.service';
 
 
 @Component({
@@ -11,13 +12,14 @@ import { MenuController, NavController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  formGroup : FormGroup; 
+  formGroup: FormGroup;
 
-  constructor(private formB : FormBuilder,
-    private navCtrl : NavController,
-    private menuCtrl : MenuController,
-    private auth : AngularFireAuth) {
-    
+  constructor(private formB: FormBuilder,
+    private navCtrl: NavController,
+    private menuCtrl: MenuController,
+    private auth: AngularFireAuth,
+    private template: TemplateService) {
+
     this.menuCtrl.enable(false);
     this.iniciarForm();
   }
@@ -25,29 +27,35 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  logar(){
+  logar() {
 
-    let user = this.formGroup.controls['username'].value;
-    let password = this.formGroup.controls['password'].value;
+    this.template.loading.then(load => {
 
-    this.auth.signInWithEmailAndPassword(user,password).then(data=>{
-      this.navCtrl.navigateRoot(['/home']);
-    }).catch(err=>{
-      console.log("Login incorreto");
+      var user = this.formGroup.controls['username'].value;
+      let password = this.formGroup.controls['password'].value;
+
+      this.auth.signInWithEmailAndPassword(user, password).then(data => {
+        load.dismiss();
+        this.navCtrl.navigateRoot(['/home']);
+      }).catch(err => {
+        load.dismiss();
+        this.template.myAlert("Login Incorreto");
+      })
+
+    }).catch(err => {
+
     })
 
-
-    
   }
 
-  iniciarForm(){
+  iniciarForm() {
     this.formGroup = this.formB.group({
-      username : ['', [Validators.required,Validators.email]],
-      password : ['', [Validators.required, Validators.minLength(6)]]
+      username: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
 
-  paginaCadastro(){
+  paginaCadastro() {
     this.navCtrl.navigateForward(['/login-cadastro']);
   }
 

@@ -1,4 +1,5 @@
- import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -15,6 +16,16 @@ export class AppComponent implements OnInit {
       title: 'Home',
       url: '/home',
       icon: 'home'
+    },
+    {
+      title: 'Clientes',
+      url: '/clientes',
+      icon: 'person-circle'
+    },
+    {
+      title: 'Novo Cliente',
+      url: '/cliente-novo',
+      icon: 'person-circle'
     },
     {
       title: 'Perfil',
