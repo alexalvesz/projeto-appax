@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
       icon: 'home'
     },
     {
-      title: 'Clientes',
-      url: '/clientes',
+      title: 'Lista de clientes',
+      url: '/cliente-lista',
       icon: 'person-circle'
     },
     {

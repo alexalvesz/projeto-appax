@@ -39,13 +39,21 @@ const routes: Routes = [
     loadChildren: () => import('./login-cadastro/login-cadastro.module').then( m => m.LoginCadastroPageModule)
   },
   {
-    path: 'clientes',
+    path: 'cliente-lista',
     loadChildren: () => import('./clientes/clientes.module').then( m => m.ClientesPageModule)
   },
   {
     path: 'cliente-novo',
     loadChildren: () => import('./cliente-novo/cliente-novo.module').then( m => m.ClienteNovoPageModule)
-  }
+  },
+  {
+    path: 'cliente-visualizar/id',
+    loadChildren: () => import('./cliente-visualizar/cliente-visualizar.module').then( m => m.ClienteVisualizarPageModule)
+  },
+  {
+    path: 'cliente-atualizar/:id',
+    loadChildren: () => import('./cliente-atualizar/cliente-atualizar.module').then( m => m.ClienteAtualizarPageModule)
+  },
 ];
 
 @NgModule({

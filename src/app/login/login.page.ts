@@ -29,20 +29,22 @@ export class LoginPage implements OnInit {
 
   logar() {
 
-    this.template.loading.then(load => {
+    this.template.loading.then(load => { // iniciar o carregamento
+      load.present(); // forçar inicio carregamento
 
-      var user = this.formGroup.controls['username'].value;
+      let user = this.formGroup.controls['username'].value;
       let password = this.formGroup.controls['password'].value;
 
       this.auth.signInWithEmailAndPassword(user, password).then(data => {
-        load.dismiss();
+      // Login correto
+        load.dismiss(); // Parar o carregamento
         this.navCtrl.navigateRoot(['/home']);
       }).catch(err => {
+        // Login errado
         load.dismiss();
         this.template.myAlert("Login Incorreto");
-      })
 
-    }).catch(err => {
+      })
 
     })
 
@@ -50,8 +52,8 @@ export class LoginPage implements OnInit {
 
   iniciarForm() {
     this.formGroup = this.formB.group({
-      username: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      username: ['alex@gmail.com', [Validators.required, Validators.email]],
+      password: ['123456', [Validators.required, Validators.minLength(6)]]
     })
   }
 
