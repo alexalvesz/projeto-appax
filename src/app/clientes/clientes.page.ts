@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Cliente } from '../model/cliente';
-import { ClienteService } from '../services/cliente.service';
+import { ClienteService } from '../service/cliente.service';
 
 
 @Component({

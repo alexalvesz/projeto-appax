@@ -8,9 +8,9 @@
   <ion-list>
 
     <ion-item *ngFor="let cliente of lista">
-<ion-label>{{cliente.nome}}</ion-label>
-<ion-button (click)="cliente(visualizar)">Visualizar</ion-button>
+      <ion-label>{{cliente.nome}}</ion-label>
+      <ion-button (click)="visualizar(cliente)">Visualizar</ion-button>
     </ion-item>
-  </ion-list>
 
+  </ion-list>
 </ion-content>

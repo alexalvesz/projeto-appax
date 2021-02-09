@@ -1,84 +1,96 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { from, Observable } from 'rxjs';
-import { Cliente } from '../model/cliente';
+import { Injectable } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { from, Observable } from "rxjs";
+import { Cliente } from "../model/cliente";
 
 @Injectable()
-export class ClienteService {
-
+export class ClienteService{
     constructor(private firestore : AngularFirestore){}
 
+
     cadastrar(cliente : any) : Observable<any>{ // Função cadastro
-        return from(new Observable(observe=>{
-            //codigo > Inicia o cadastro
+        return from(new Observable(observe=>{ // Converte para Observable
+
+            //codigo -> Inicia o cadastro
             this.firestore.collection('cliente').add(cliente).then(response=>{
-            observe.next("Cadastro com sucesso");
+                observe.next("Cadastrado com sucesso");
             }).catch(err=>{
                 console.log(err);
                 observe.next("Erro ao cadastrar");
             })
-            }))
-        }
+            // fim codigo
+        }))
+    }
 
-    listaDeClientes(): Observable<any> {
-        return from(new Observable(observe =>{ // converter para Observable
+    listaDeClientes(): Observable<any>{
 
-            this.firestore.collection('cliente').snapshotChanges().subscribe(response =>{
+        return from(new Observable(observe=>{ // Converte para Observable
+            
+            this.firestore.collection('cliente').snapshotChanges().subscribe(response=>{ 
+                
+                let lista : Cliente[] = []; // iniciar uma lista vazia  
 
-                let lista: Cliente[] = []; // iniciar uma lista vazia 
-
-                //convertter o response em objetos cliente
-                response.map(obj => {
-                   //dados do cliente
+                // converter o response em objetos cliente
+                response.map(obj=>{ 
+                    // dados do cliente
                     let data = obj.payload.doc.data();
                     let id = obj.payload.doc.id;
 
-                    // Dados do cliente no objeto Cliente
+                    // dados do cliente no objeto CLiente
                     let cliente : Cliente = new Cliente();
-                    cliente.setData(id,data);// obj.payload.doc.data() -> Dados do cliente
-                    lista.push(cliente); // adicionando o cliente na lista // push é adicionar
+                    cliente.setData(id,data);
+                    lista.push(cliente); // adicionando o cliente na lista
+
                 })
+
                 observe.next(lista);
+            })
+
+
+        }))  
+    }
+
+    buscarPorId(id : any): Observable<any>{
+        return from(new Observable(observe=>{ // Converte para Observable
+
+            this.firestore.collection('cliente').doc(id).snapshotChanges().subscribe(response=>{
+                
+                let data = response.payload.data();
+                let id = response.payload.id;
+
+                // dados do cliente no objeto CLiente
+                let cliente : Cliente = new Cliente();
+                cliente.setData(id,data);
+
+                observe.next(cliente);
+            },err=>{
+                observe.next(null);
             })
 
         }))
     }
 
-    buscarPorId(id: any): Observable<any>{
 
-        return from(new Observable(observe =>{ // Converte para Observable
+    atualizar(id : any, dados : any): Observable<any>{
+        return from(new Observable(observe=>{ // Converte para Observable
+       
+            this.firestore.collection('cliente').doc(id).set(dados).then(response=>{
+                observe.next("Atualizado com sucesso");
+            },err=>{
+                observe.next("Erro ao atualizar");
+            })
+                    
+        }))
 
-            this.firestore.collection('cliente').doc(id).snapshotChanges().subscribe(response =>{
+    }
+        excluir(id : any): Observable<any>{
+        return from(new Observable(observe=>{ // Converte para Observable
 
-                let data = response.payload.data();
-                let id = response.payload.id;
-
-                // dados do cliente no objeto CLiente
-                let cliente: Cliente = new Cliente();
-                cliente.setData(id,data);
-
-                observe.next(cliente);
-            },err =>{
-                observe.next(null);
+            this.firestore.collection('cliente').doc(id).delete().then(response=>{
+                observe.next("Excluído com sucesso");
+            },err=>{
+                observe.next("Erro ao atualizar");
             })
         })) 
+    }
 }
-
-
-atualizar(id: any, dados: any): Observable<any>{   
-    
-    return from(new Observable(observe=>{
-
-     this.firestore.collection('cliente').doc(id).set(dados).then(response=>{          
-
-           observe.next("Atualizado com sucesso");
-},err => {
-      observe.next("Erro ao atualizar");
- })
-
-}))
-
-    } 
-}
-
-

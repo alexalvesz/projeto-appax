@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Cliente } from '../model/cliente';
-import { ClienteService } from '../services/cliente.service';
-import { TemplateService } from '../services/template.service';
+import { ClienteService } from '../service/cliente.service';
+import { TemplateService } from '../service/template.service';
 
 @Component({
   selector: 'app-cliente-atualizar',
@@ -14,55 +14,32 @@ import { TemplateService } from '../services/template.service';
 export class ClienteAtualizarPage implements OnInit {
 
   formGroup: FormGroup;
-
   cliente: Cliente = new Cliente();
 
   constructor(private navCtrl: NavController,
     private formB: FormBuilder,
-
     private activatedRoute: ActivatedRoute,
-
     private clienteServ: ClienteService,
     private template: TemplateService) {
-
     this.iniciarForm();
-
   }
-
-
 
   ngOnInit() {
 
-
-
     this.activatedRoute.paramMap.subscribe(idUrl => {
-
       let id = idUrl.get('id');
 
-
-
       this.clienteServ.buscarPorId(id).subscribe(response => {
-
         this.cliente = response;
-
         console.log(this.cliente);
-
         this.iniciarForm();
-
       })
 
-
-
     })
-
   }
 
-
-
   iniciarForm() {
-
     this.formGroup = this.formB.group({
-
       nome: [this.cliente.nome],
       cpf: [this.cliente.cpf],
       cidade: [this.cliente.cidade],
@@ -71,19 +48,17 @@ export class ClienteAtualizarPage implements OnInit {
       estado: [this.cliente.estado],
       email: [this.cliente.email],
       telefone: [this.cliente.telefone]
-
     })
-
   }
 
   atualizar() {
+
     this.template.loading.then(load => { // iniciar o carregamento
-      load.present(); // forçar inicio carregamento
+      load.present(); // forçar inicio carremento
 
       this.clienteServ.atualizar(this.cliente.id, this.formGroup.value).subscribe(response => {
         load.dismiss();
         this.template.myAlert(response);
-
       },err=>{
         load.dismiss();
         this.template.myAlert(err);
@@ -93,5 +68,3 @@ export class ClienteAtualizarPage implements OnInit {
   }
 
 }
-
-

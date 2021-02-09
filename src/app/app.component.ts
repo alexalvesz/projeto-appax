@@ -18,25 +18,35 @@ export class AppComponent implements OnInit {
       icon: 'home'
     },
     {
-      title: 'Lista de clientes',
+      title: 'Perfil',
+      url: '/perfil',
+      icon: 'person-circle'
+    },
+    {
+      title: 'Cadastro de Clientes',
+      url: '/cliente-cadastro',
+      icon: 'person-circle'
+    },
+    {
+      title: 'Lista de Clientes',
       url: '/cliente-lista',
       icon: 'person-circle'
     },
     {
-      title: 'Novo Cliente',
-      url: '/cliente-novo',
+      title: 'Cadastrar Produto',
+      url: '/produto-cadastro',
       icon: 'person-circle'
     },
     {
-      title: 'Perfil',
-      url: '/perfil',
+      title: 'Lista de Produtos',
+      url: '/produto-lista',
       icon: 'person-circle'
     },
     {
       title: 'Sair',
       url: '/sair',
       icon: 'exit'
-    },
+    }
     
   ];
   public labels = [];

@@ -39,20 +39,48 @@ const routes: Routes = [
     loadChildren: () => import('./login-cadastro/login-cadastro.module').then( m => m.LoginCadastroPageModule)
   },
   {
+    path: 'cliente-cadastro',
+    loadChildren: () => import('./cliente-cadastro/cliente-cadastro.module').then( m => m.ClienteCadastroPageModule)
+  },
+  {
     path: 'cliente-lista',
-    loadChildren: () => import('./clientes/clientes.module').then( m => m.ClientesPageModule)
+    loadChildren: () => import('./cliente-lista/cliente-lista.module').then( m => m.ClienteListaPageModule)
   },
   {
-    path: 'cliente-novo',
-    loadChildren: () => import('./cliente-novo/cliente-novo.module').then( m => m.ClienteNovoPageModule)
-  },
-  {
-    path: 'cliente-visualizar/id',
+    path: 'cliente-visualizar/:id',
     loadChildren: () => import('./cliente-visualizar/cliente-visualizar.module').then( m => m.ClienteVisualizarPageModule)
   },
   {
     path: 'cliente-atualizar/:id',
     loadChildren: () => import('./cliente-atualizar/cliente-atualizar.module').then( m => m.ClienteAtualizarPageModule)
+  },
+  {
+    path: 'cliente-remove/:id',
+    loadChildren: () => import('./cliente-remove/cliente-remove.module').then( m => m.ClienteRemovePageModule)
+  },
+  {
+    path: 'login-recuperar',
+    loadChildren: () => import('./login-recuperar/login-recuperar.module').then( m => m.LoginRecuperarPageModule)
+  },
+  {
+    path: 'atualizar-produto/:id',
+    loadChildren: () => import('./atualizar-produto/atualizar-produto.module').then( m => m.AtualizarProdutoPageModule)
+  },
+  {
+    path: 'produto-cadastro',
+    loadChildren: () => import('./produto-cadastro/produto-cadastro.module').then( m => m.ProdutoCadastroPageModule)
+  },
+  {
+    path: 'produto-excluir/:id',
+    loadChildren: () => import('./produto-excluir/produto-excluir.module').then( m => m.ProdutoExcluirPageModule)
+  },
+  {
+    path: 'produto-lista',
+    loadChildren: () => import('./produto-lista/produto-lista.module').then( m => m.ProdutoListaPageModule)
+  },
+  {
+    path: 'produto-visualizar/:id',
+    loadChildren: () => import('./produto-visualizar/produto-visualizar.module').then( m => m.ProdutoVisualizarPageModule)
   },
 ];
 

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Produto Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="formGroup">
+
+  <ion-list lines="full" class="ion-no-margin">
+
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" formControlName="nome"></ion-input>
+      <p *ngIf="formGroup.controls.nome.errors && formGroup.controls.nome.dirty">Nome Inválido</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Preço</ion-label>
+      <ion-input type="text" formControlName="preco"></ion-input>
+      <p *ngIf="formGroup.controls.preco.errors && formGroup.controls.preco.dirty">Preço Inválido</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Marca</ion-label>
+      <ion-input type="text" formControlName="marca"></ion-input>
+      <p *ngIf="formGroup.controls.marca.errors && formGroup.controls.marca.dirty">Marca Inválida</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Departamento</ion-label>
+      <ion-input type="text" formControlName="departamento"></ion-input>
+      <p *ngIf="formGroup.controls.departamento.errors && formGroup.controls.departmamento.dirty">Departamento Inválido</p>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-button color="primary" expand="full" (click)="cadastro()" [disabled]="formGroup.invalid">Cadastrar</ion-button>
+  </form>
+</ion-content>

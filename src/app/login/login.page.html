@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     
-    <ion-title>Fazer login</ion-title>
+    <ion-title>login</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -29,5 +29,7 @@
   <ion-button color="primary" expand="full" (click)="logar()" [disabled]="formGroup.invalid">Entrar</ion-button>
   <ion-button color="warning" expand="full" (click)="paginaCadastro()">Criar Login</ion-button>
  
+  <ion-button color="warning" (click)="recuperarSenha()">Recuperar Senha</ion-button>
+
   </form>
 </ion-content>

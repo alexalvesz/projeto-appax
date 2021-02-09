@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ClienteService } from '../services/cliente.service';
-import { TemplateService } from '../services/template.service';
+import { ClienteService} from '../service/cliente.service'
+import { TemplateService } from '../service/template.service';
 
 
 

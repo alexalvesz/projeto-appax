@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuController, NavController } from '@ionic/angular';
-import { TemplateService } from '../services/template.service';
+import { TemplateService } from '../service/template.service';
 
 
 @Component({
@@ -22,6 +22,10 @@ export class LoginPage implements OnInit {
 
     this.menuCtrl.enable(false);
     this.iniciarForm();
+
+    this.auth.authState.subscribe(response=>{
+      
+    })
   }
 
   ngOnInit() {
@@ -30,20 +34,19 @@ export class LoginPage implements OnInit {
   logar() {
 
     this.template.loading.then(load => { // iniciar o carregamento
-      load.present(); // forçar inicio carregamento
-
+      load.present(); // forçar inicio carremento
       let user = this.formGroup.controls['username'].value;
       let password = this.formGroup.controls['password'].value;
-
-      this.auth.signInWithEmailAndPassword(user, password).then(data => {
-      // Login correto
-        load.dismiss(); // Parar o carregamento
+      
+      this.auth.signInWithEmailAndPassword(user, password).then(data => { // tentar logar
+        // login correto
+        load.dismiss(); // parar o carregamento
         this.navCtrl.navigateRoot(['/home']);
       }).catch(err => {
-        // Login errado
-        load.dismiss();
-        this.template.myAlert("Login Incorreto");
-
+        // login errado
+        load.dismiss(); // parar o carregamento
+        this.template.myAlert("Login incorreto");
+        
       })
 
     })
@@ -59,6 +62,10 @@ export class LoginPage implements OnInit {
 
   paginaCadastro() {
     this.navCtrl.navigateForward(['/login-cadastro']);
+  }
+
+  recuperarSenha() {
+    this.navCtrl.navigateForward(['/login-recuperar']);
   }
 
 }
